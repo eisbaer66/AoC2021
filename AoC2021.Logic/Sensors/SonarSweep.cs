@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AoC2021.Logic
+namespace AoC2021.Logic.Sensors
 {
     public class SonarSweep
     {

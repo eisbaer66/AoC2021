@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace AoC2021.Logic.Day2
+namespace AoC2021.Logic.Routeing
 {
     public class Route
     {

@@ -1,7 +1,7 @@
 ﻿using System;
-using AoC2021.Logic.Day2.Steps;
+using AoC2021.Logic.Routeing.Steps;
 
-namespace AoC2021.Logic.Day2.Part1
+namespace AoC2021.Logic.Routeing.Part1
 {
     public class StepFactory : IStepFactory
     {

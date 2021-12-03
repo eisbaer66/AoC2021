@@ -1,4 +1,5 @@
 using System.IO;
+using AoC2021.Logic.Sensors;
 using NUnit.Framework;
 
 namespace AoC2021.Logic.Tests.Day1

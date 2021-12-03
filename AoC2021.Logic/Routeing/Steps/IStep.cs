@@ -1,4 +1,4 @@
-﻿namespace AoC2021.Logic.Day2.Steps
+﻿namespace AoC2021.Logic.Routeing.Steps
 {
     public interface IStep
     {

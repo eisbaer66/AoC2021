@@ -1,4 +1,4 @@
-﻿namespace AoC2021.Logic.Day2
+﻿namespace AoC2021.Logic.Routeing
 {
     public record Position
     {

@@ -1,6 +1,6 @@
-﻿using AoC2021.Logic.Day2.Steps;
+﻿using AoC2021.Logic.Routeing.Steps;
 
-namespace AoC2021.Logic.Day2.Part1.Steps
+namespace AoC2021.Logic.Routeing.Part1.Steps
 {
     internal record Forward : IStep
     {
