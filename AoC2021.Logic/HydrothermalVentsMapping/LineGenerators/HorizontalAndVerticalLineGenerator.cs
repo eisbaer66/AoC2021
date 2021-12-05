@@ -10,21 +10,26 @@ namespace AoC2021.Logic.HydrothermalVentsMapping.LineGenerators
         {
             if (startPoint.X == endPoint.X)
             {
-                var minY = Math.Min(startPoint.Y, endPoint.Y);
-                var maxY = Math.Max(startPoint.Y, endPoint.Y);
-                return Enumerable.Range(minY, maxY - minY + 1)
-                                 .Select(y => new Coordinate(startPoint.X, y));
+                return Range(startPoint.Y, endPoint.Y)
+                    .Select(y => new Coordinate(startPoint.X, y));
             }
 
             if (startPoint.Y == endPoint.Y)
             {
-                var minX = Math.Min(startPoint.X, endPoint.X);
-                var maxX = Math.Max(startPoint.X, endPoint.X);
-                return Enumerable.Range(minX, maxX - minX + 1)
-                                 .Select(x => new Coordinate(x, startPoint.Y));
+                return Range(startPoint.X, endPoint.X)
+                    .Select(x => new Coordinate(x, startPoint.Y));
             }
 
             return null;
+        }
+
+        protected IEnumerable<int> Range(int start, int end)
+        {
+            var min   = Math.Min(start, end);
+            var max   = Math.Max(start, end);
+            var range = Enumerable.Range(min, max - min + 1);
+
+            return start > end ? range.Reverse() : range;
         }
     }
 }
