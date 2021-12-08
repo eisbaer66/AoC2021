@@ -3,23 +3,8 @@ using System.Linq;
 
 namespace AoC2021.Logic.SevenSegmentDisplays
 {
-    internal record Display
+    internal record Display(string[] Wires, string[] Digits)
     {
-        public Display(string[] wires, string[] digits)
-        {
-            Wires  = wires;
-            Digits = digits;
-        }
-
-        public string[] Wires  { get; init; }
-        public string[] Digits { get; init; }
-
-        public void Deconstruct(out string[] wires, out string[] digits)
-        {
-            wires  = Wires;
-            digits = Digits;
-        }
-
         /*
          * 0: ABC EFG   6
          * 1:   C  F    2   unique
