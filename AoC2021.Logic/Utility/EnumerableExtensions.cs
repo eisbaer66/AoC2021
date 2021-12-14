@@ -17,5 +17,17 @@ namespace AoC2021.Logic.Utility
 
             return (matches, nonMatches);
         }
+
+        public static IEnumerable<int> IndexOfAll(this string template, string key)
+        {
+            var index = -1;
+            while (true)
+            {
+                index = template.IndexOf(key, index + 1, StringComparison.InvariantCulture);
+                if (index < 0)
+                    yield break;
+                yield return index;
+            }
+        }
     }
 }

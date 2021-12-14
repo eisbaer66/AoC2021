@@ -1,6 +1,6 @@
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using AoC2021.Logic.DumboOctopuses;
 using NUnit.Framework;
 
 namespace AoC2021.Logic.Tests.Day11
