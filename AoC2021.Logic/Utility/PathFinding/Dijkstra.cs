@@ -50,25 +50,27 @@ namespace AoC2021.Logic.Utility.PathFinding
         {
             startNode.CostToStart = 0;
 
-            var openNodes = new List<DijkstraNode<T>>();
-            openNodes.Add(startNode);
+            var openNodes = new PriorityQueue<DijkstraNode<T>, int>();
+            openNodes.Enqueue(startNode, 0);
 
             do
             {
-                openNodes = openNodes.OrderBy(x => x.CostToStart).ToList();
-                var node = openNodes.First();
-                openNodes.Remove(node);
+                var node = openNodes.Dequeue();
+                if (node.Visited)
+                    continue;
+                
                 foreach (var neighbor in node.Neighbors.OrderBy(n => n.Cost))
                 {
                     if (neighbor.Visited)
                         continue;
-                    if (neighbor.CostToStart != null && !(node.CostToStart + neighbor.Cost < neighbor.CostToStart))
+
+                    var costToStart = (node.CostToStart ?? 0) + neighbor.Cost;
+                    if (neighbor.CostToStart != null && costToStart >= neighbor.CostToStart)
                         continue;
 
-                    neighbor.CostToStart    = node.CostToStart + neighbor.Cost;
+                    neighbor.CostToStart    = costToStart;
                     neighbor.NearestToStart = node;
-                    if (!openNodes.Contains(neighbor))
-                        openNodes.Add(neighbor);
+                    openNodes.Enqueue(neighbor, costToStart);
                 }
 
                 node.Visited = true;
