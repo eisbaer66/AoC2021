@@ -14,7 +14,7 @@ namespace AoC2021.Logic.Tests.Day15
         public void Part1(string filename, long expectedScore)
         {
             var input  = File.ReadAllText(filename);
-            var chunks = new PathFinding(input, new NullExpander());
+            var chunks = new Maze(input, new NullExpander());
             var path   = chunks.FindPath(new Coordinate(0, 0), chunks.MaxCoord);
 
             Assert.AreEqual(expectedScore, path.Skip(1).Select(n => n.Risk).Sum());
@@ -26,7 +26,7 @@ namespace AoC2021.Logic.Tests.Day15
         public void Part2(string filename, long expectedScore)
         {
             var input  = File.ReadAllText(filename);
-            var chunks = new PathFinding(input, new TimesFiveExpander());
+            var chunks = new Maze(input, new TimesFiveExpander());
             var path   = chunks.FindPath(new Coordinate(0, 0), chunks.MaxCoord);
 
             Assert.AreEqual(expectedScore, path.Skip(1).Select(n => n.Risk).Sum());

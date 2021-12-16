@@ -2,15 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AoC2021.Logic.Chiton.MapExpanders;
-using AoC2021.Logic.Utility.PathFinding;
+using AoC2021.Logic.Utility.PathFinding.AStar;
+//using AoC2021.Logic.Utility.PathFinding.Dijkstra;
 
 namespace AoC2021.Logic.Chiton
 {
-    public class PathFinding
+    public class Maze
     {
         private readonly Dictionary<Coordinate, RiskReading> _dict;
 
-        public PathFinding(string input, IExpander expander)
+        public Maze(string input, IExpander expander)
         {
             if (input == null) throw new ArgumentNullException(nameof(input));
 
@@ -67,9 +68,18 @@ namespace AoC2021.Logic.Chiton
 
         public IList<RiskReading> FindPath(Coordinate start, Coordinate end)
         {
-            var                dijkstra = new Dijkstra<RiskReading, Coordinate>(_dict.Values, r => new DijkstraNode<RiskReading>(r, r.Risk), r => r.Coordinate, r => r.Neighbors.Select(n => n.Coordinate));
-            IList<RiskReading> path     = dijkstra.FindPath(start, end);
+            var dijkstra = new PathFinding<RiskReading, Coordinate>(_dict.Values,
+                                                                    (r, target) => new Node<RiskReading>(r, ManhattanDistanceBetween(r.Coordinate, target)),
+                                                                    //(r) => new Node<RiskReading>(r),
+                                                                    r => r.Coordinate,
+                                                                    r => r.Neighbors.Select(n => new Neighbor<Coordinate>(n.Coordinate, n.Risk)));
+            var path     = dijkstra.FindPath(start, end);
             return path;
+        }
+
+        private int ManhattanDistanceBetween(Coordinate a, Coordinate b)
+        {
+            return Math.Abs(a.X - b.X) + Math.Abs(a.Y - b.Y);
         }
     }
 }
