@@ -7,7 +7,7 @@ namespace AoC2021.Logic.Utility.PathFinding
     public class Dijkstra<T, TKey>
     {
         private readonly T[]                        _items;
-        private readonly Func<T, DijkstraNode<T>>           _getNode;
+        private readonly Func<T, DijkstraNode<T>>   _getNode;
         private readonly Func<T, TKey>              _getKey;
         private readonly Func<T, IEnumerable<TKey>> _getNeighborKeys;
 
@@ -58,7 +58,7 @@ namespace AoC2021.Logic.Utility.PathFinding
                 var node = openNodes.Dequeue();
                 if (node.Visited)
                     continue;
-                
+
                 foreach (var neighbor in node.Neighbors.OrderBy(n => n.Cost))
                 {
                     if (neighbor.Visited)
