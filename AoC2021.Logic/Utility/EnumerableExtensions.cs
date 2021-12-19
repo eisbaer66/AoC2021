@@ -1,10 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AoC2021.Logic.Utility
 {
     public static class EnumerableExtensions
     {
+        public static IEnumerable<T> ForEach<T>(this IEnumerable<T> items, Action<T> action)
+        {
+            foreach (var item in items)
+            {
+                action(item);
+                yield return item;
+            }
+        }
         public static (IList<T>, IList<T>) UnZip<T>(this IEnumerable<T> items, Func<T, bool> predicate)
         {
             var matches = new List<T>();
@@ -28,6 +37,13 @@ namespace AoC2021.Logic.Utility
                     yield break;
                 yield return index;
             }
+        }
+
+        public static IEnumerable<(T a, T b)> CombinationsWithoutPermutation<T>(this ICollection<T> list)
+        {
+            return list.SelectMany((a, i) => list
+                                             .Skip(i)
+                                             .Select(b => (a, b)));
         }
     }
 }

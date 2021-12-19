@@ -81,10 +81,9 @@ namespace AoC2021.Logic.Utility.PathFinding.Dijkstra
             } while (openNodes.Count > 0);
         }
 
-        private List<T> BuildPath(Node<T> node)
+        private static List<T> BuildPath(Node<T> node)
         {
-            var path = new List<T>();
-            path.Add(node.Item);
+            var path = new List<T> { node.Item };
             BuildPath(path, node);
             path.Reverse();
             return path;
